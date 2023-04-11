@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./sprict.js"></script>
+    <script>
+      //cho 2 arr tìm count giống nhau của 2 arr đó
+      //input string = ['ab' ,'ab' ,'abc'] , queries = ['ab', 'abc','bc']
+      //output result = [2,1,0] => ab : 2 , abc :  1, "bc": 0
+      //queries.map  => query  => strings.map => string=> query == string => count => push results
+      const matchingString = (strings, queries) => {
+        let results = [];
+        queries.map((query) => {
+          let count = 0;
+          strings.map((string) => {
+            if (string === query) {
+              return count++;
+            }
+          });
+          results.push(count);
+        });
+        return results;
+      };
+
+      //max vs min
+      //input numbers =[1,2,3,4]
+      //output max = 9 => 2+3+4
+      //       min = 6 => 1+2+3
+      //sort arr => remove arr[0] => reduce arr
+      const minMax = (arr) => {
+        const newArr = arr.sort((a, b) => a - b);
+        const max = newArr.slice(1, arr.length).reduce((a, b) => a + b, 0);
+        const min = newArr
+          .reverse()
+          .slice(1, arr.length)
+          .reduce((a, b) => a + b, 0);
+      };
+
+      // input a = [1,2,3,4,3,2,1]
+      //output  4 => no-repeat in array
+      //arr.forEach => filter =>
+      const lonelyinteger = (a) => {
+        let result;
+        const isChecked = (num, arr) => {
+          arr.filter((i) => i == num).lenth > 1 ? true : false;
+        };
+        a.forEach((num, i, arr) => {
+          if (!isChecked(num, arr)) {
+            return (result = num);
+          }
+        });
+
+        return result;
+      };
+
+      lonelyinteger([1, 2, 3, 4, 3, 2, 1]);
+
+      function compareTriplets(a, b) {
+        let numA = 0;
+        let numB = 0;
+        let scoreArr = [];
+        for (let i = 0; i < a.length; i++) {
+          if (a[i] > b[i]) {
+            numA += 1;
+          } else if (a[i] < b[i]) {
+            numB += 1;
+          }
+        }
+        scoreArr = [numA, numB];
+        return scoreArr;
+      }
+      compareTriplets([5, 6, 7], [3, 6, 10]);
+
+      function birthdayCakeCandles(candles) {
+        let scoreMax = 0;
+        const max = candles.sort((a, b) => b - a)[0];
+        scoreMax = candles.filter((a) => a == max).length;
+      }
+      birthdayCakeCandles([3, 2, 1, 5]);
+
+      //đảo ngược 1 chuỗi cho trước
+      const reverseString = (s) => {
+        const result = [];
+        for (let i = s.length - 1; i >= 0; i--) {
+          result.push(s[i]);
+        }
+        // console.log( result.join(''))
+        return result.join("");
+      };
+      reverseString("ok con de");
+
+      //filter number to array
+      const findElement = (arr, element) => {
+        const index = arr.indexOf(element);
+        return index !== -1 ? index : null;
+      };
+    </script>
+  </body>
+</html>
